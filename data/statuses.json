@@ -72,8 +72,8 @@
       "申诫": 1,
       "mvp": 0,
       "察看期": 0,
-      "flag": false,
-      "socks": true,
+      "flag": true,
+      "socks": false,
       "申领物": [
         {
           "name": "报销账户",
@@ -128,7 +128,7 @@
       "mvp": 0,
       "察看期": 0,
       "flag": false,
-      "socks": false,
+      "socks": true,
       "申领物": [
         {
           "name": "三倍浓缩杯",
