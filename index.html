@@ -716,6 +716,18 @@
       color: var(--accent-red);
     }
 
+    .agent-title {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.15rem;
+    }
+
+    .agent-title .label {
+      font-weight: 600;
+      color: var(--accent-red);
+      margin-right: 0.25rem;
+    }
+
     .agent-agency-rating {
       font-size: 0.85rem;
       color: var(--text-secondary);
@@ -1774,6 +1786,7 @@
                 <div>
                   <div class="agent-name">${escapeHtml(agent.name || '未命名特工')}</div>
                   ${agent.aka ? `<div class="agent-aka">${escapeHtml(agent.aka)}</div>` : ''}
+                  ${agent.机构头衔 ? `<div class="agent-title"><span class="label">机构头衔：</span>${escapeHtml(agent.机构头衔)}</div>` : ''}
                   <div class="agent-agency-rating"><span class="label">机构评级：</span><span class="rating-value ${getAgencyRatingTier(agent.申诫 ?? 0)}">${getAgencyRating(agent.申诫 ?? 0)}</span></div>
                 </div>
                 ${scoresHtml}
