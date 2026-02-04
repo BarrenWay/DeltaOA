@@ -823,6 +823,28 @@
 
     .ref-block.异常 .ref-item summary {
       color: var(--arc-anomaly);
+      display: flex;
+      align-items: center;
+    }
+
+    .ref-block.异常 .ref-item summary .ability-summary-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ref-block.异常 .ref-item summary .ability-name {
+      color: inherit;
+      text-shadow: none;
+    }
+
+    .ref-block.异常 .ability-proficient {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--arc-anomaly);
+      flex-shrink: 0;
     }
 
     .ref-block.现实 {
@@ -1329,7 +1351,12 @@
       if (abilities.length === 0) return '<div class="ref-item-desc">无</div>';
       return abilities.map(ab => `
         <details class="ref-item">
-          <summary>${escapeHtml(ab.name || '')}</summary>
+          <summary>
+            <span class="ability-summary-inner">
+              <span class="ability-name">${escapeHtml(ab.name || '')}</span>
+              ${ab.熟练 ? '<span class="ability-proficient">(熟练)</span>' : ''}
+            </span>
+          </summary>
           <div class="ref-item-desc">${escapeHtml(ab.description || '')}</div>
         </details>
       `).join('');
