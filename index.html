@@ -186,6 +186,12 @@
       min-width: 0;
     }
 
+    .banner-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .agent-dropdown-wrap {
       position: relative;
       flex: 1;
@@ -1625,6 +1631,16 @@
         gap: 0.5rem;
       }
 
+      .banner-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+      }
+
+      .banner-buttons .items-list-btn {
+        flex: 1;
+      }
+
       .agent-dropdown-wrap {
         max-width: 100%;
       }
@@ -1745,8 +1761,10 @@
         </button>
         <div class="agent-dropdown-panel" id="agentDropdownPanel"></div>
       </div>
-      <button class="items-list-btn" id="itemsListBtn">申领物列表</button>
-      <button class="items-list-btn" id="missionArchiveBtn">任务档案库</button>
+      <div class="banner-buttons">
+        <button class="items-list-btn" id="itemsListBtn">申领物列表</button>
+        <button class="items-list-btn" id="missionArchiveBtn">任务档案库</button>
+      </div>
     </div>
   </header>
 
