@@ -2043,7 +2043,7 @@
         <div class="sidebar-title">机构总经理</div>
         <div class="gm-profile">
           <div class="gm-profile-frame">
-            <img src="assets/gm-profile.png" alt="机构总经理"
+            <img data-src="assets/gm-profile.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="机构总经理"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="gm-profile-placeholder"
               style="display:none; background:var(--bg-dark); align-items:center; justify-content:center; color:var(--text-secondary); font-size:0.8rem;">
@@ -2426,30 +2426,37 @@
 
     async function load() {
       const content = document.getElementById('content');
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
       try {
         const data = await fetchJSON('statuses.json');
-        document.getElementById('chaosValue').textContent = data.agency?.混沌值 ?? '—';
-        document.getElementById('looseEnds').textContent = data.agency?.散逸端 ?? '—';
 
-        function updateRealityStability() {
-          const pct = Math.floor(Math.random() * 21) + 75;
-          document.getElementById('realityStability').textContent = pct + '%';
-        }
-        updateRealityStability();
-        setInterval(updateRealityStability, 1000);
+        if (!isMobile) {
+          document.getElementById('chaosValue').textContent = data.agency?.混沌值 ?? '—';
+          document.getElementById('looseEnds').textContent = data.agency?.散逸端 ?? '—';
 
-        const newsEl = document.getElementById('agencyNews');
-        const newsArr = data.agency?.news;
-        if (Array.isArray(newsArr) && newsArr.length > 0) {
-          const sorted = [...newsArr].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-          newsEl.innerHTML = sorted.map(item => `
-            <div class="news-item">
-              <div class="news-item-date">${escapeHtml(item.date || '')}</div>
-              <div>${escapeHtml(item.text || '')}</div>
-            </div>
-          `).join('');
-        } else {
-          newsEl.innerHTML = '<span class="agency-news-placeholder">暂无动态</span>';
+          function updateRealityStability() {
+            const pct = Math.floor(Math.random() * 21) + 75;
+            document.getElementById('realityStability').textContent = pct + '%';
+          }
+          updateRealityStability();
+          setInterval(updateRealityStability, 1000);
+
+          const newsEl = document.getElementById('agencyNews');
+          const newsArr = data.agency?.news;
+          if (Array.isArray(newsArr) && newsArr.length > 0) {
+            const sorted = [...newsArr].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+            newsEl.innerHTML = sorted.map(item => `
+              <div class="news-item">
+                <div class="news-item-date">${escapeHtml(item.date || '')}</div>
+                <div>${escapeHtml(item.text || '')}</div>
+              </div>
+            `).join('');
+          } else {
+            newsEl.innerHTML = '<span class="agency-news-placeholder">暂无动态</span>';
+          }
+
+          const gmImg = document.querySelector('.gm-profile-frame img[data-src]');
+          if (gmImg && gmImg.dataset.src) gmImg.src = gmImg.dataset.src;
         }
 
         allAgents = Array.isArray(data.agents) ? data.agents : [];
