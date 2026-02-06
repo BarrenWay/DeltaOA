@@ -856,38 +856,157 @@
     }
 
     @keyframes glitch-btn {
-      0%, 25%, 50%, 75%, 97%, 100% { opacity: 1; transform: translate(0); }
-      26% { opacity: 0.7; transform: translate(-2px, 2px); }
-      27% { opacity: 1; transform: translate(2px, -2px); }
-      28% { opacity: 1; transform: translate(0); }
-      51% { opacity: 0.8; transform: translate(2px, -1px); }
-      52% { opacity: 1; transform: translate(-1px, 1px); }
-      53% { opacity: 1; transform: translate(0); }
-      76% { opacity: 0.9; transform: translate(-1px, -1px); }
-      77% { opacity: 1; transform: translate(1px, 1px); }
-      78% { opacity: 1; transform: translate(0); }
+
+      0%,
+      25%,
+      50%,
+      75%,
+      97%,
+      100% {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      26% {
+        opacity: 0.7;
+        transform: translate(-2px, 2px);
+      }
+
+      27% {
+        opacity: 1;
+        transform: translate(2px, -2px);
+      }
+
+      28% {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      51% {
+        opacity: 0.8;
+        transform: translate(2px, -1px);
+      }
+
+      52% {
+        opacity: 1;
+        transform: translate(-1px, 1px);
+      }
+
+      53% {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      76% {
+        opacity: 0.9;
+        transform: translate(-1px, -1px);
+      }
+
+      77% {
+        opacity: 1;
+        transform: translate(1px, 1px);
+      }
+
+      78% {
+        opacity: 1;
+        transform: translate(0);
+      }
     }
 
     @keyframes glitch-text {
-      0%, 25%, 50%, 75%, 97%, 100% { transform: translate(0); text-shadow: none; }
-      26% { transform: translate(2px, -2px); text-shadow: -2px 0 #0ff, 2px 0 #f0f; }
-      27% { transform: translate(-2px, 2px); text-shadow: 2px 0 #0ff, -2px 0 #f0f; }
-      28% { transform: translate(0); text-shadow: none; }
-      51% { transform: translate(-1px, 1px); text-shadow: 1px 0 #0ff, -1px 0 #f0f; }
-      52% { transform: translate(0); text-shadow: none; }
-      76% { transform: translate(1px, -1px); text-shadow: -1px 0 #f0f, 1px 0 #0ff; }
-      77% { transform: translate(0); text-shadow: none; }
+
+      0%,
+      25%,
+      50%,
+      75%,
+      97%,
+      100% {
+        transform: translate(0);
+        text-shadow: none;
+      }
+
+      26% {
+        transform: translate(2px, -2px);
+        text-shadow: -2px 0 #0ff, 2px 0 #f0f;
+      }
+
+      27% {
+        transform: translate(-2px, 2px);
+        text-shadow: 2px 0 #0ff, -2px 0 #f0f;
+      }
+
+      28% {
+        transform: translate(0);
+        text-shadow: none;
+      }
+
+      51% {
+        transform: translate(-1px, 1px);
+        text-shadow: 1px 0 #0ff, -1px 0 #f0f;
+      }
+
+      52% {
+        transform: translate(0);
+        text-shadow: none;
+      }
+
+      76% {
+        transform: translate(1px, -1px);
+        text-shadow: -1px 0 #f0f, 1px 0 #0ff;
+      }
+
+      77% {
+        transform: translate(0);
+        text-shadow: none;
+      }
     }
 
     @keyframes glitch-layer {
-      0%, 25%, 50%, 75%, 97%, 100% { opacity: 0; transform: translate(0); }
-      26% { opacity: 0.9; transform: translate(-2px, 0); }
-      27% { opacity: 0.9; transform: translate(2px, 0); }
-      28% { opacity: 0; transform: translate(0); }
-      51% { opacity: 0.7; transform: translate(2px, 0); }
-      52% { opacity: 0; transform: translate(0); }
-      76% { opacity: 0.8; transform: translate(-2px, 0); }
-      77% { opacity: 0; transform: translate(0); }
+
+      0%,
+      25%,
+      50%,
+      75%,
+      97%,
+      100% {
+        opacity: 0;
+        transform: translate(0);
+      }
+
+      26% {
+        opacity: 0.9;
+        transform: translate(-2px, 0);
+      }
+
+      27% {
+        opacity: 0.9;
+        transform: translate(2px, 0);
+      }
+
+      28% {
+        opacity: 0;
+        transform: translate(0);
+      }
+
+      51% {
+        opacity: 0.7;
+        transform: translate(2px, 0);
+      }
+
+      52% {
+        opacity: 0;
+        transform: translate(0);
+      }
+
+      76% {
+        opacity: 0.8;
+        transform: translate(-2px, 0);
+      }
+
+      77% {
+        opacity: 0;
+        transform: translate(0);
+      }
     }
 
     .sidebar-title {
@@ -2043,7 +2162,8 @@
         <div class="sidebar-title">机构总经理</div>
         <div class="gm-profile">
           <div class="gm-profile-frame">
-            <img data-src="assets/gm-profile.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="机构总经理"
+            <img data-src="assets/gm-profile.png"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="机构总经理"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="gm-profile-placeholder"
               style="display:none; background:var(--bg-dark); align-items:center; justify-content:center; color:var(--text-secondary); font-size:0.8rem;">
@@ -2054,7 +2174,8 @@
             <div class="gm-info-row"><span class="label">AKA：</span>哈里</div>
           </div>
         </div>
-        <button type="button" class="glitch-sos-btn" id="glitchSosBtn" aria-label="内部文件泄露SOS"><span class="glitch-text" data-text="内部文件泄露SOS">内部文件泄露SOS</span></button>
+        <button type="button" class="glitch-sos-btn" id="glitchSosBtn" aria-label="内部文件泄露SOS"><span class="glitch-text"
+            data-text="内部文件泄露SOS">内部文件泄露SOS</span></button>
       </div>
       <div class="sidebar-section agency-news agency-news-section">
         <div class="sidebar-title">机构动态</div>
