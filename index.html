@@ -2341,9 +2341,22 @@
       .agent-card {
         overflow: visible;
       }
-      .agent-card-back {
-        overflow: hidden !important;
-        -webkit-overflow-scrolling: auto;
+      .agent-card-inner {
+        overflow: visible;
+      }
+      .agent-card-flip.flipped .agent-card-front {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        overflow: hidden;
+      }
+      .agent-card-flip.flipped .agent-card-back {
+        position: relative;
+        inset: auto;
+        overflow: visible !important;
+        min-height: 0;
       }
 
       .agent-card-back .arc-tracks-help {
