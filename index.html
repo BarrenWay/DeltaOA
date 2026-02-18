@@ -429,6 +429,99 @@
       max-width: 680px;
     }
 
+    .agency-dice-modal {
+      max-width: 420px;
+    }
+
+    .agency-dice-modal .modal-title {
+      color: var(--accent-red);
+      text-shadow: 0 0 8px var(--glow-red-soft);
+    }
+
+    .agency-dice-hint {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .agency-dice-body {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dice-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+
+    .d4-die {
+      position: relative;
+      width: 52px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .d4-die .d4-triangle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      margin-left: -26px;
+      margin-top: -22px;
+      border-left: 26px solid transparent;
+      border-right: 26px solid transparent;
+      border-bottom: 44px solid var(--accent-red);
+      filter: drop-shadow(0 0 8px var(--glow-red));
+      transition: transform 0.15s ease-out;
+      transform-origin: 26px 22px;
+    }
+
+    .d4-die[data-value="1"] .d4-triangle { transform: rotate(0deg); }
+    .d4-die[data-value="2"] .d4-triangle { transform: rotate(90deg); }
+    .d4-die[data-value="3"] .d4-triangle { transform: rotate(180deg); }
+    .d4-die[data-value="4"] .d4-triangle { transform: rotate(270deg); }
+
+    .d4-die .d4-value {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      color: var(--text-primary);
+      text-shadow: 0 0 6px rgba(0,0,0,0.8), 0 0 4px var(--glow-red);
+    }
+
+    .agency-dice-body.rolling .d4-die {
+      animation: dice-pulse 0.12s ease-in-out 4;
+    }
+
+    @keyframes dice-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.08); }
+    }
+
+    .agency-dice-success {
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--accent-red);
+      font-size: 1rem;
+    }
+
     .joint-assessment-modal .modal-title.joint-assessment-title {
       font-size: 0.9rem;
       color: var(--text-secondary);
@@ -2089,6 +2182,7 @@
         <div class="agent-dropdown-panel" id="agentDropdownPanel"></div>
       </div>
       <div class="banner-buttons">
+        <button class="items-list-btn" id="agencyDiceBtn">机构骰子</button>
         <button class="items-list-btn" id="itemsListBtn">申领物列表</button>
         <button class="items-list-btn" id="missionArchiveBtn">任务档案库</button>
       </div>
@@ -2119,6 +2213,27 @@
       </div>
       <div class="modal-body" id="itemsListModalBody">
         <div class="items-list-loading">加载中…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="agencyDiceModalOverlay">
+    <div class="modal agency-dice-modal" id="agencyDiceModal">
+      <div class="modal-header">
+        <h3 class="modal-title">机构骰子</h3>
+        <button class="modal-close" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body agency-dice-body" id="agencyDiceBody">
+        <p class="agency-dice-hint">点击任意处掷骰</p>
+        <div class="dice-container" id="agencyDiceContainer">
+          <div class="d4-die" data-value="1"><span class="d4-triangle"></span><span class="d4-value">1</span></div>
+          <div class="d4-die" data-value="1"><span class="d4-triangle"></span><span class="d4-value">1</span></div>
+          <div class="d4-die" data-value="1"><span class="d4-triangle"></span><span class="d4-value">1</span></div>
+          <div class="d4-die" data-value="1"><span class="d4-triangle"></span><span class="d4-value">1</span></div>
+          <div class="d4-die" data-value="1"><span class="d4-triangle"></span><span class="d4-value">1</span></div>
+          <div class="d4-die" data-value="1"><span class="d4-triangle"></span><span class="d4-value">1</span></div>
+        </div>
+        <p class="agency-dice-success" id="agencyDiceSuccess">成功：0</p>
       </div>
     </div>
   </div>
@@ -2824,6 +2939,45 @@
       document.getElementById('jointAssessmentModalOverlay').classList.remove('open');
     }
 
+    function rollAgencyDice() {
+      const container = document.getElementById('agencyDiceContainer');
+      const successEl = document.getElementById('agencyDiceSuccess');
+      const body = document.getElementById('agencyDiceBody');
+      if (!container || !successEl || !body) return;
+      const dice = container.querySelectorAll('.d4-die');
+      let count3 = 0;
+      body.classList.add('rolling');
+      dice.forEach(el => {
+        const v = Math.floor(Math.random() * 4) + 1;
+        el.dataset.value = String(v);
+        const valEl = el.querySelector('.d4-value');
+        if (valEl) valEl.textContent = String(v);
+        if (v === 3) count3 += 1;
+      });
+      successEl.textContent = '成功：' + count3;
+      setTimeout(() => body.classList.remove('rolling'), 500);
+    }
+
+    function openAgencyDiceModal() {
+      document.getElementById('agencyDiceModalOverlay').classList.add('open');
+      rollAgencyDice();
+    }
+
+    function closeAgencyDiceModal() {
+      document.getElementById('agencyDiceModalOverlay').classList.remove('open');
+    }
+
+    document.getElementById('agencyDiceBtn').addEventListener('click', openAgencyDiceModal);
+    document.getElementById('agencyDiceModalOverlay').addEventListener('click', e => {
+      if (e.target.id === 'agencyDiceModalOverlay') closeAgencyDiceModal();
+    });
+    document.getElementById('agencyDiceModal').querySelector('.modal-close').addEventListener('click', closeAgencyDiceModal);
+    document.getElementById('agencyDiceBody').addEventListener('click', e => {
+      if (e.target.closest('.modal-close')) return;
+      e.preventDefault();
+      rollAgencyDice();
+    });
+
     document.getElementById('glitchSosBtn').addEventListener('click', openJointAssessmentModal);
     document.getElementById('jointAssessmentModalOverlay').addEventListener('click', e => {
       if (e.target.id === 'jointAssessmentModalOverlay') closeJointAssessmentModal();
@@ -2834,6 +2988,7 @@
       if (e.key !== 'Escape') return;
       if (document.getElementById('missionArchiveModalOverlay').classList.contains('open')) closeMissionArchiveModal();
       else if (document.getElementById('itemsListModalOverlay').classList.contains('open')) closeItemsListModal();
+      else if (document.getElementById('agencyDiceModalOverlay').classList.contains('open')) closeAgencyDiceModal();
       else if (document.getElementById('jointAssessmentModalOverlay').classList.contains('open')) closeJointAssessmentModal();
     });
 
