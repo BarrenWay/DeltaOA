@@ -426,36 +426,13 @@
           "abilities": [
             {
               "name": "██████",
-              "description": "异常已剥离",
-              "已练习": true,
-              "wellKnown": {
-                "a": 0,
-                "b": 0
-              }
-            },
-            {
-              "name": "██████",
-              "description": "异常已剥离",
-              "已练习": true,
-              "wellKnown": {
-                "a": 0,
-                "b": 0
-              }
-            },
-            {
-              "name": "██████",
-              "description": "异常已剥离",
-              "已练习": true,
-              "wellKnown": {
-                "a": 0,
-                "b": 0
-              }
+              "description": "异常已剥离"
             }
           ]
         },
         "现实": {
           "choice": "红蓝公敌",
-          "割裂进度": 4,
+          "割裂进度": 0,
           "关系": [
             {
               "name": "哈里",
