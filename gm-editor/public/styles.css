@@ -405,6 +405,21 @@ body > * {
   border-color: var(--accent-red);
 }
 
+.gm-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.gm-fields .field {
+  margin-bottom: 0.75rem;
+}
+
+.gm-lore-btn {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
 .inmail-section {
   margin-top: 1.5rem;
   padding-top: 1rem;

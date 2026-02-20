@@ -46,7 +46,7 @@ function renderAgency() {
   const agency = statuses.agency || {};
   document.getElementById('chaosValue').value = agency.混沌值 ?? 0;
   document.getElementById('looseEnds').value = agency.散逸端 ?? 0;
-}
+  }
 
 function renderNews() {
   if (!statuses) return;
@@ -1020,6 +1020,43 @@ function setupItemsDelegation() {
   document.getElementById('inMailSaveBtn')?.addEventListener('click', submitInMail);
   document.getElementById('inMailClearBtn')?.addEventListener('click', clearInMail);
 
+  function openGmInfoModal() {
+    const gm = statuses?.gm || {};
+    document.getElementById('gmModalName').value = gm.name ?? '';
+    document.getElementById('gmModalAka').value = gm.aka ?? '';
+    document.getElementById('gmModalLore').value = gm.lore ?? '';
+    document.getElementById('gmInfoModalOverlay').classList.add('open');
+  }
+  function closeGmInfoModal() {
+    document.getElementById('gmInfoModalOverlay').classList.remove('open');
+  }
+  async function submitGmInfoModal() {
+    if (!statuses) return;
+    statuses.gm = statuses.gm || {};
+    statuses.gm.name = document.getElementById('gmModalName').value.trim();
+    statuses.gm.aka = document.getElementById('gmModalAka').value.trim();
+    statuses.gm.lore = document.getElementById('gmModalLore').value.trim();
+    closeGmInfoModal();
+    try {
+      const res = await fetch(`${API_BASE}/api/statuses`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(statuses)
+      });
+      if (!res.ok) throw new Error(await res.text());
+      showToast('GM 信息已保存');
+    } catch (err) {
+      showToast('保存失败: ' + err.message);
+    }
+  }
+  document.getElementById('gmInfoBtn')?.addEventListener('click', openGmInfoModal);
+  const gmInfoOverlay = document.getElementById('gmInfoModalOverlay');
+  gmInfoOverlay?.addEventListener('click', (e) => {
+    if (e.target === gmInfoOverlay) closeGmInfoModal();
+  });
+  gmInfoOverlay?.querySelector('.modal-close')?.addEventListener('click', closeGmInfoModal);
+  document.getElementById('gmInfoSubmit')?.addEventListener('click', submitGmInfoModal);
+
   const newItemOverlay = document.getElementById('newItemModalOverlay');
   const newMissionOverlay = document.getElementById('newMissionModalOverlay');
   const chaosEffectOverlay = document.getElementById('chaosEffectModalOverlay');
@@ -1034,6 +1071,7 @@ function setupItemsDelegation() {
     if (e.key === 'Escape' && relationshipOverlay?.classList.contains('open')) closeRelationshipModal();
     if (e.key === 'Escape' && addAbilityOverlay?.classList.contains('open')) closeAddAbilityModal();
     if (e.key === 'Escape' && inMailOverlay?.classList.contains('open')) closeInMailModal();
+    if (e.key === 'Escape' && gmInfoOverlay?.classList.contains('open')) closeGmInfoModal();
     if (e.key === 'Escape' && chaosEffectOverlay?.classList.contains('open')) closeRefModal('chaosEffectModalOverlay');
     if (e.key === 'Escape' && chaosEffectConfirmOverlay?.classList.contains('open')) document.getElementById('chaosEffectConfirmModalOverlay').classList.remove('open');
     if (e.key === 'Escape' && secondaryAnomalyOverlay?.classList.contains('open')) closeRefModal('secondaryAnomalyModalOverlay');
@@ -1146,6 +1184,7 @@ async function initStatuses() {
   if (!confirm(warning)) return;
   const defaultStatuses = {
     agency: { 混沌值: 0, 散逸端: 0, news: [] },
+    gm: { name: '', aka: '', lore: '' },
     agents: []
   };
   try {
