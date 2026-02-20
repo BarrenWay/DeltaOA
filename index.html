@@ -523,6 +523,11 @@
       color: var(--arc-anomaly);
     }
 
+    .siphon-u-message .siphon-u-text {
+      flex: 1;
+      min-width: 0;
+    }
+
     .siphon-u-message .siphon-u-quote {
       color: var(--arc-anomaly);
       font-style: italic;
@@ -3688,7 +3693,7 @@
             contentEl.innerHTML = '<div class="items-list-loading">暂无商品</div>';
             return;
           }
-          const quoteBlock = `<div class="siphon-u-message">${eyeSvgQuote}<span>U的信息：</span><span class="siphon-u-quote">${escapeHtml(randomQuote)}</span></div>`;
+          const quoteBlock = `<div class="siphon-u-message">${eyeSvgQuote}<span class="siphon-u-text">U的信息：<span class="siphon-u-quote">${escapeHtml(randomQuote)}</span></span></div>`;
           contentEl.innerHTML = quoteBlock + items.map(item => {
             const unit = item.priceUnit || '申诫';
             const priceStr = item.price != null ? item.price + ' ' + unit : '—';
