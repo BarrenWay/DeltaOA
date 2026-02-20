@@ -2128,6 +2128,49 @@
       margin: 0.35rem 0.75rem 0.75rem;
     }
 
+    .well-known-wrap {
+      padding-top: 0.35rem !important;
+      font-size: 0.7rem;
+    }
+
+    .well-known-track {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.75rem;
+      font-size: inherit;
+      color: var(--text-secondary);
+    }
+
+    .well-known-intro {
+      flex-shrink: 0;
+      margin-right: 0.15rem;
+    }
+
+    .well-known-label {
+      flex-shrink: 0;
+    }
+
+    .well-known-boxes {
+      display: inline-flex;
+      gap: 0.2rem;
+    }
+
+    .well-known-box {
+      display: inline-block;
+      width: 0.9rem;
+      height: 0.9rem;
+      border: 1px solid rgba(46, 77, 146, 0.5);
+      border-radius: 2px;
+      background: var(--bg-card);
+    }
+
+    .well-known-box.filled {
+      background: rgba(46, 77, 146, 0.35);
+      border-color: var(--arc-anomaly);
+      color: var(--arc-anomaly);
+    }
+
     .item-card {
       background: var(--bg-dark);
       border-radius: 4px;
@@ -2624,10 +2667,31 @@
       return 'tier-10';
     }
 
+    function buildWellKnownBoxes(value) {
+      const n = Math.min(3, Math.max(0, parseInt(value, 10) || 0));
+      let html = '';
+      for (let i = 0; i < 3; i++) {
+        html += `<span class="well-known-box${i < n ? ' filled' : ''}"></span>`;
+      }
+      return html;
+    }
+
     function buildRefAnomalyHtml(agent) {
       const abilities = agent.arc?.异常?.abilities || [];
       if (abilities.length === 0) return '<div class="ref-item-desc">无</div>';
-      return abilities.map(ab => `
+      return abilities.map(ab => {
+        const wk = ab.wellKnown || { a: 0, b: 0 };
+        const aVal = Math.min(3, Math.max(0, parseInt(wk.a, 10) || 0));
+        const bVal = Math.min(3, Math.max(0, parseInt(wk.b, 10) || 0));
+        const wellKnownHtml = `
+          <div class="well-known-track">
+            <span class="well-known-intro">广为人知</span>
+            <span class="well-known-label">A</span>
+            <div class="well-known-boxes">${buildWellKnownBoxes(aVal)}</div>
+            <span class="well-known-label">B</span>
+            <div class="well-known-boxes">${buildWellKnownBoxes(bVal)}</div>
+          </div>`;
+        return `
         <details class="ref-item">
           <summary>
             <span class="ability-summary-inner">
@@ -2636,8 +2700,10 @@
             </span>
           </summary>
           <div class="ref-item-desc">${formatDescriptionWithOutcomes(ab.description || '')}</div>
+          <div class="ref-item-desc well-known-wrap">${wellKnownHtml}</div>
         </details>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function buildRealitySplitTrackerHtml(割裂进度) {
