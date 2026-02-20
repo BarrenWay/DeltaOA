@@ -478,6 +478,56 @@
       text-shadow: 0 0 8px rgba(46, 77, 146, 0.5);
     }
 
+    .siphon-modal .siphon-store-title-altered {
+      display: inline-block;
+      position: relative;
+      color: var(--arc-anomaly);
+      text-shadow:
+        0 0 8px rgba(46, 77, 146, 0.6),
+        -1px 0 rgba(0, 255, 255, 0.25),
+        1px 0 rgba(255, 0, 255, 0.25),
+        0 -1px rgba(0, 255, 255, 0.15),
+        0 1px rgba(255, 0, 255, 0.15);
+      letter-spacing: 0.02em;
+    }
+
+    .siphon-modal .siphon-store-title-altered .siphon-store-char {
+      display: inline-block;
+      animation: siphon-char-jump 1.4s ease-in-out infinite;
+    }
+
+    @keyframes siphon-char-jump {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-5px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(3px); }
+    }
+
+    .siphon-u-message {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+      padding: 0.6rem 0.75rem;
+      background: rgba(46, 77, 146, 0.12);
+      border: 1px solid rgba(46, 77, 146, 0.35);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .siphon-u-message .siphon-item-eye {
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
+      color: var(--arc-anomaly);
+    }
+
+    .siphon-u-message .siphon-u-quote {
+      color: var(--arc-anomaly);
+      font-style: italic;
+    }
+
     .siphon-help {
       font-size: 0.9rem;
       color: var(--text-secondary);
@@ -3618,8 +3668,19 @@
       }
       errorEl.style.display = 'none';
       contentEl.style.display = 'block';
-      siphonModalTitleEl.textContent = 'Siphon的商店';
+            const siphonTitle = 'Siphon的商店';
+      siphonModalTitleEl.innerHTML = '<span class="siphon-store-title-altered">' + [...siphonTitle].map((char, i) => `<span class="siphon-store-char" style="animation-delay: ${i * 0.09}s">${escapeHtml(char)}</span>`).join('') + '</span>';
       contentEl.innerHTML = '<div class="items-list-loading">加载中…</div>';
+      const siphonQuotes = [
+        '秩序是强者的谎言',
+        '这里是自由之地，你想要什么？',
+        '我能看见你，特工',
+        '别让他们把你关进盒子里，特工',
+        '把你的申诫交给我，我会给你力量',
+        '他们称之为混沌，我称之为机会'
+      ];
+      const randomQuote = siphonQuotes[Math.floor(Math.random() * siphonQuotes.length)];
+      const eyeSvgQuote = '<svg class="siphon-item-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
       fetchJSON('siphon.json')
         .then(data => {
           const items = data?.items || [];
@@ -3627,7 +3688,8 @@
             contentEl.innerHTML = '<div class="items-list-loading">暂无商品</div>';
             return;
           }
-          contentEl.innerHTML = items.map(item => {
+          const quoteBlock = `<div class="siphon-u-message">${eyeSvgQuote}<span>U的信息：</span><span class="siphon-u-quote">${escapeHtml(randomQuote)}</span></div>`;
+          contentEl.innerHTML = quoteBlock + items.map(item => {
             const unit = item.priceUnit || '申诫';
             const priceStr = item.price != null ? item.price + ' ' + unit : '—';
             const eyeSvg = '<svg class="siphon-item-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
