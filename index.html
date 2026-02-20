@@ -570,6 +570,160 @@
       transform: rotate(90deg);
     }
 
+    /* Email notification (reminder) modal — Triangle Agency theme (职能) */
+    .email-reminder-modal {
+      max-width: 380px;
+      border: 1px solid rgba(196, 30, 58, 0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-red-soft);
+    }
+    .email-reminder-modal .email-reminder-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, rgba(196, 30, 58, 0.22) 0%, rgba(196, 30, 58, 0.06) 100%);
+      border-bottom: 1px solid rgba(196, 30, 58, 0.35);
+      border-radius: 8px 8px 0 0;
+    }
+    .email-reminder-modal .email-reminder-icon {
+      flex-shrink: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(196, 30, 58, 0.35);
+      border-radius: 10px;
+      color: #e85c75;
+    }
+    .email-reminder-modal .email-reminder-icon svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+    .email-reminder-modal .email-reminder-header-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .email-reminder-modal .email-reminder-title {
+      margin: 0 0 0.2rem 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f0aab5;
+      text-shadow: 0 0 8px var(--glow-red-soft);
+    }
+    .email-reminder-modal .email-reminder-subtitle {
+      margin: 0;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .email-reminder-modal .email-reminder-header .modal-close {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .email-reminder-modal .email-reminder-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+    .email-reminder-modal .email-reminder-open-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.65rem 1.25rem;
+      background: linear-gradient(180deg, var(--accent-red) 0%, var(--accent-red-dark) 100%);
+      color: #fff;
+      border: 1px solid rgba(196, 30, 58, 0.5);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 2px 10px var(--glow-red-soft);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .email-reminder-modal .email-reminder-open-btn:hover {
+      background: linear-gradient(180deg, #d42a48 0%, var(--accent-red) 100%);
+      box-shadow: 0 4px 14px var(--glow-red-soft);
+    }
+    .email-reminder-modal .email-reminder-open-icon {
+      display: inline-flex;
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+    .email-reminder-modal .email-reminder-open-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Email content (read) modal — Triangle Agency theme */
+    .email-content-modal {
+      max-width: 520px;
+      border: 1px solid rgba(196, 30, 58, 0.35);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 25px var(--glow-red-soft);
+    }
+    .email-content-modal .email-content-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, rgba(30, 15, 18, 0.98) 0%, rgba(20, 10, 12, 0.99) 100%);
+      border-bottom: 1px solid rgba(196, 30, 58, 0.4);
+      border-radius: 8px 8px 0 0;
+    }
+    .email-content-modal .email-content-icon {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(196, 30, 58, 0.3);
+      border-radius: 8px;
+      color: #e85c75;
+    }
+    .email-content-modal .email-content-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .email-content-modal .email-content-header-inner {
+      flex: 1;
+      min-width: 0;
+    }
+    .email-content-modal .email-content-title {
+      margin: 0 0 0.35rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #f0aab5;
+      text-shadow: 0 0 6px var(--glow-red-soft);
+    }
+    .email-content-modal .email-content-meta {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .email-content-modal .email-content-from {
+      font-style: normal;
+    }
+    .email-content-modal .email-content-header .modal-close {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .email-content-modal .email-content-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.4), transparent);
+    }
+    .email-content-modal .email-content-body-wrap {
+      padding: 1.25rem 1.5rem 1.5rem;
+      background: rgba(12, 10, 11, 0.7);
+      border-radius: 0 0 8px 8px;
+      max-height: 55vh;
+      overflow-y: auto;
+    }
+    .email-content-modal .email-content-body {
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
     .siphon-store-content .items-list-item .item-title {
       display: inline-flex;
       align-items: center;
@@ -2743,6 +2897,50 @@
     </div>
   </div>
 
+  <div class="modal-overlay" id="emailReminderModalOverlay">
+    <div class="modal email-reminder-modal">
+      <div class="email-reminder-header">
+        <span class="email-reminder-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <div class="email-reminder-header-text">
+          <h3 class="email-reminder-title">新邮件提醒</h3>
+          <p class="email-reminder-subtitle">您有一封新邮件</p>
+        </div>
+        <button class="modal-close" type="button" aria-label="关闭" id="emailReminderClose">×</button>
+      </div>
+      <div class="email-reminder-body">
+        <button type="button" class="email-reminder-open-btn" id="emailReminderOpenBtn">
+          <span class="email-reminder-open-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
+          打开邮件
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="emailContentModalOverlay">
+    <div class="modal email-content-modal">
+      <div class="email-content-header">
+        <span class="email-content-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <div class="email-content-header-inner">
+          <h3 class="email-content-title" id="emailContentTitle">邮件</h3>
+          <div class="email-content-meta">
+            <span class="email-content-from">发件人：机构系统</span>
+          </div>
+        </div>
+        <button class="modal-close" type="button" aria-label="关闭" id="emailContentClose">×</button>
+      </div>
+      <div class="email-content-divider"></div>
+      <div class="email-content-body-wrap">
+        <div class="email-content-body" id="emailContentBody"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="layout">
     <aside class="sidebar">
       <div class="sidebar-section agency-stats-section">
@@ -3302,6 +3500,13 @@
             }
           });
         }
+        fetchJSON('inMail.json').then(inData => {
+          const email = inData?.email;
+          if (email && typeof email === 'object' && (email.title || email.content)) {
+            window._currentInMail = email;
+            document.getElementById('emailReminderModalOverlay').classList.add('open');
+          }
+        }).catch(() => {});
       } catch (err) {
         content.innerHTML = `<div class="error">${escapeHtml(err.message)}</div>`;
       }
@@ -3360,6 +3565,30 @@
       if (e.target.id === 'siphonModalOverlay') closeSiphonModal();
     });
     document.getElementById('siphonModal').querySelector('.modal-close').addEventListener('click', closeSiphonModal);
+
+    function closeEmailReminderModal() {
+      document.getElementById('emailReminderModalOverlay').classList.remove('open');
+    }
+    function closeEmailContentModal() {
+      document.getElementById('emailContentModalOverlay').classList.remove('open');
+    }
+    document.getElementById('emailReminderClose').addEventListener('click', closeEmailReminderModal);
+    document.getElementById('emailReminderModalOverlay').addEventListener('click', e => {
+      if (e.target.id === 'emailReminderModalOverlay') closeEmailReminderModal();
+    });
+    document.getElementById('emailReminderOpenBtn').addEventListener('click', () => {
+      closeEmailReminderModal();
+      const email = window._currentInMail;
+      if (email) {
+        document.getElementById('emailContentTitle').textContent = email.title || '邮件';
+        document.getElementById('emailContentBody').textContent = email.content || '';
+        document.getElementById('emailContentModalOverlay').classList.add('open');
+      }
+    });
+    document.getElementById('emailContentClose').addEventListener('click', closeEmailContentModal);
+    document.getElementById('emailContentModalOverlay').addEventListener('click', e => {
+      if (e.target.id === 'emailContentModalOverlay') closeEmailContentModal();
+    });
 
     document.getElementById('siphonSubmitBtn').addEventListener('click', () => {
       const input = document.getElementById('siphonPassword');
@@ -3663,6 +3892,8 @@
       else if (document.getElementById('agencyDiceModalOverlay').classList.contains('open')) closeAgencyDiceModal();
       else if (document.getElementById('jointAssessmentModalOverlay').classList.contains('open')) closeJointAssessmentModal();
       else if (document.getElementById('siphonModalOverlay').classList.contains('open')) closeSiphonModal();
+      else if (document.getElementById('emailContentModalOverlay').classList.contains('open')) closeEmailContentModal();
+      else if (document.getElementById('emailReminderModalOverlay').classList.contains('open')) closeEmailReminderModal();
     });
 
     load();
