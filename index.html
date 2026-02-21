@@ -88,7 +88,7 @@
       background: var(--bg-elevated);
       border-bottom: 1px solid var(--border);
       box-shadow: 0 0 25px var(--glow-red-soft), 0 2px 0 rgba(0, 0, 0, 0.3);
-      padding: 1rem 1.5rem;
+      padding: 0.65rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -279,8 +279,102 @@
       flex-shrink: 0;
     }
 
+    .banner-btn-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      display: block;
+    }
+
+    .banner-buttons {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.75rem;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .banner-btn-with-label {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0 0 0 0;
+      margin: 0;
+      width: 4rem;
+      min-width: 4rem;
+      max-width: 4rem;
+      box-sizing: border-box;
+      background: transparent;
+      border: none;
+    }
+
+    .banner-btn-with-label .banner-btn-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(196, 30, 58, 0.5);
+      background: rgba(196, 30, 58, 0.15);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .banner-btn-with-label:hover .banner-btn-cell {
+      background: rgba(196, 30, 58, 0.25);
+      border-color: rgba(196, 30, 58, 0.6);
+    }
+
+    .banner-btn-cell-with-badge {
+      position: relative;
+    }
+
+    .banner-email-badge {
+      display: none;
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      min-width: 1rem;
+      height: 1rem;
+      padding: 0 0.25rem;
+      border-radius: 10px;
+      background: var(--accent-red);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      line-height: 1rem;
+      text-align: center;
+      box-shadow: 0 0 0 1px var(--bg-card);
+    }
+
+    .banner-email-badge.visible {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-btn-with-label .banner-btn-icon {
+      width: 1.85rem;
+      height: 1.85rem;
+    }
+
+    .banner-btn-with-label .banner-btn-label {
+      font-family: inherit;
+      font-size: 0.58rem;
+      font-weight: 500;
+      line-height: 1.15;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+      color: var(--arc-competency);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+      margin: 0;
+      padding: 0;
+    }
+
     .items-list-btn {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.65rem;
       background: rgba(196, 30, 58, 0.15);
       border: 1px solid rgba(196, 30, 58, 0.5);
       color: var(--arc-competency);
@@ -291,6 +385,22 @@
       border-radius: 6px;
       transition: background 0.2s, box-shadow 0.2s;
       box-shadow: 0 0 8px var(--glow-red-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .items-list-btn.banner-btn-with-label {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .items-list-btn.banner-btn-with-label:hover {
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .items-list-btn:hover {
@@ -298,23 +408,40 @@
       box-shadow: 0 0 12px var(--glow-red-soft);
     }
 
+    .siphon-btn.banner-btn-with-label {
+      padding: 0;
+      background: transparent;
+      border: none;
+    }
+
     .siphon-btn {
       padding: 0.5rem 0.65rem;
-      background: rgba(46, 77, 146, 0.15);
-      border: 1px solid rgba(46, 77, 146, 0.5);
+      background: transparent;
+      border: 1px solid transparent;
       color: var(--arc-anomaly);
       font-family: inherit;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s;
+      transition: background 0.2s, border-color 0.2s;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
 
-    .siphon-btn:hover {
+    .siphon-btn .banner-btn-label {
+      font-family: inherit;
+      color: var(--arc-anomaly);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+
+    .siphon-btn .banner-btn-cell {
+      border-color: rgba(46, 77, 146, 0.5);
+      background: rgba(46, 77, 146, 0.15);
+    }
+
+    .siphon-btn:hover .banner-btn-cell {
       background: rgba(46, 77, 146, 0.3);
-      box-shadow: 0 0 10px rgba(46, 77, 146, 0.4);
+      border-color: rgba(46, 77, 146, 0.6);
     }
 
     .siphon-eye-icon {
@@ -676,6 +803,12 @@
     }
     .email-reminder-modal .email-reminder-body {
       padding: 1.25rem 1.25rem 1.5rem;
+    }
+    .email-reminder-modal .email-reminder-no-mail {
+      margin: 0;
+      color: var(--text-secondary);
+      text-align: center;
+      font-size: 0.95rem;
     }
     .email-reminder-modal .email-reminder-open-btn {
       display: inline-flex;
@@ -2689,21 +2822,40 @@
 
       .banner-buttons {
         display: flex;
-        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         gap: 0.5rem;
+        padding: 0.25rem 0;
+        width: 100%;
       }
 
-      .banner-buttons .items-list-btn {
+      .banner-buttons .banner-btn-with-label {
         flex: 1;
+        min-width: 0;
+        max-width: none;
+        width: auto;
+        padding: 0;
+        gap: 0;
+      }
+
+      .banner-buttons .banner-btn-with-label .banner-btn-label {
+        display: none;
+      }
+
+      .banner-buttons .banner-btn-with-label .banner-btn-cell {
+        width: 2.75rem;
+        min-width: 2.75rem;
+        height: 2.75rem;
+        margin: 0 auto;
+      }
+
+      .banner-buttons .banner-btn-with-label .banner-btn-icon {
+        width: 1.6rem;
+        height: 1.6rem;
       }
 
       .agent-dropdown-wrap {
         max-width: 100%;
-      }
-
-      .items-list-btn {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.85rem;
       }
 
       .layout {
@@ -2865,12 +3017,29 @@
         </button>
         <div class="agent-dropdown-panel" id="agentDropdownPanel"></div>
       </div>
-      <div class="banner-buttons">
-        <button class="items-list-btn" id="agencyDiceBtn">机构骰子</button>
-        <button class="items-list-btn" id="itemsListBtn">申领物列表</button>
-        <button class="items-list-btn" id="missionArchiveBtn">任务档案库</button>
-        <button class="siphon-btn" id="siphonBtn" type="button" aria-label="Siphon的商店" title="Siphon的商店">
-          <svg class="siphon-eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <div class="banner-buttons" id="bannerButtons">
+        <button class="items-list-btn banner-btn-with-label" id="agencyDiceBtn" type="button" aria-label="机构骰子" title="机构骰子">
+          <span class="banner-btn-cell"><svg class="banner-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="15" r="1.2"/></svg></span>
+          <span class="banner-btn-label">机构骰子</span>
+        </button>
+        <button class="items-list-btn banner-btn-with-label" id="itemsListBtn" type="button" aria-label="申领物列表" title="申领物列表">
+          <span class="banner-btn-cell"><svg class="banner-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>
+          <span class="banner-btn-label">申领物</span>
+        </button>
+        <button class="items-list-btn banner-btn-with-label" id="missionArchiveBtn" type="button" aria-label="任务档案库" title="任务档案库">
+          <span class="banner-btn-cell"><svg class="banner-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="banner-btn-label">任务档案</span>
+        </button>
+        <button class="items-list-btn banner-btn-with-label" id="emailInboxBtn" type="button" aria-label="机构邮箱" title="机构邮箱">
+          <span class="banner-btn-cell banner-btn-cell-with-badge">
+            <svg class="banner-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span class="banner-email-badge" id="emailInboxBadge" aria-hidden="true">1</span>
+          </span>
+          <span class="banner-btn-label">机构邮箱</span>
+        </button>
+        <button class="siphon-btn banner-btn-with-label" id="siphonBtn" type="button" aria-label="Siphon的商店" title="Siphon的商店">
+          <span class="banner-btn-cell"><svg class="siphon-eye-icon banner-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="banner-btn-label">U???</span>
         </button>
       </div>
     </div>
@@ -2964,18 +3133,21 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </span>
         <div class="email-reminder-header-text">
-          <h3 class="email-reminder-title">新邮件提醒</h3>
-          <p class="email-reminder-subtitle">您有一封新邮件</p>
+          <h3 class="email-reminder-title" id="emailReminderTitle">新邮件提醒</h3>
+          <p class="email-reminder-subtitle" id="emailReminderSubtitle">您有一封新邮件</p>
         </div>
         <button class="modal-close" type="button" aria-label="关闭" id="emailReminderClose">×</button>
       </div>
       <div class="email-reminder-body">
-        <button type="button" class="email-reminder-open-btn" id="emailReminderOpenBtn">
-          <span class="email-reminder-open-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </span>
-          打开邮件
-        </button>
+        <div id="emailReminderHasMail" class="email-reminder-has-mail">
+          <button type="button" class="email-reminder-open-btn" id="emailReminderOpenBtn">
+            <span class="email-reminder-open-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            打开邮件
+          </button>
+        </div>
+        <p id="emailReminderNoMail" class="email-reminder-no-mail" style="display:none">暂无邮件</p>
       </div>
     </div>
   </div>
@@ -3572,9 +3744,11 @@
           const email = inData?.email;
           if (email && typeof email === 'object' && (email.title || email.content)) {
             window._currentInMail = email;
-            document.getElementById('emailReminderModalOverlay').classList.add('open');
+          } else {
+            window._currentInMail = null;
           }
-        }).catch(() => {});
+          updateEmailBadge();
+        }).catch(() => { updateEmailBadge(); });
       } catch (err) {
         content.innerHTML = `<div class="error">${escapeHtml(err.message)}</div>`;
       }
@@ -3634,12 +3808,52 @@
     });
     document.getElementById('siphonModal').querySelector('.modal-close').addEventListener('click', closeSiphonModal);
 
+    const INMAIL_SEEN_KEY = 'agencyOS_inMail_seen';
+    function inMailSeen() {
+      try { return sessionStorage.getItem(INMAIL_SEEN_KEY) === '1'; } catch (e) { return false; }
+    }
+    function setInMailSeen() {
+      try { sessionStorage.setItem(INMAIL_SEEN_KEY, '1'); } catch (e) {}
+    }
+    function updateEmailBadge() {
+      const badge = document.getElementById('emailInboxBadge');
+      if (!badge) return;
+      const hasMail = !!(window._currentInMail && (window._currentInMail.title || window._currentInMail.content));
+      if (hasMail && !inMailSeen()) {
+        badge.classList.add('visible');
+      } else {
+        badge.classList.remove('visible');
+      }
+    }
+    function openEmailModal() {
+      const hasMail = !!(window._currentInMail && (window._currentInMail.title || window._currentInMail.content));
+      const seen = inMailSeen();
+      const titleEl = document.getElementById('emailReminderTitle');
+      const subtitleEl = document.getElementById('emailReminderSubtitle');
+      const hasMailEl = document.getElementById('emailReminderHasMail');
+      const noMailEl = document.getElementById('emailReminderNoMail');
+      if (hasMail && !seen) {
+        setInMailSeen();
+        updateEmailBadge();
+        if (titleEl) titleEl.textContent = '新邮件提醒';
+        if (subtitleEl) subtitleEl.textContent = '您有一封新邮件';
+        if (hasMailEl) hasMailEl.style.display = '';
+        if (noMailEl) noMailEl.style.display = 'none';
+      } else {
+        if (titleEl) titleEl.textContent = '机构邮箱';
+        if (subtitleEl) subtitleEl.textContent = '';
+        if (hasMailEl) hasMailEl.style.display = 'none';
+        if (noMailEl) noMailEl.style.display = 'block';
+      }
+      document.getElementById('emailReminderModalOverlay').classList.add('open');
+    }
     function closeEmailReminderModal() {
       document.getElementById('emailReminderModalOverlay').classList.remove('open');
     }
     function closeEmailContentModal() {
       document.getElementById('emailContentModalOverlay').classList.remove('open');
     }
+    document.getElementById('emailInboxBtn').addEventListener('click', openEmailModal);
     document.getElementById('emailReminderClose').addEventListener('click', closeEmailReminderModal);
     document.getElementById('emailReminderModalOverlay').addEventListener('click', e => {
       if (e.target.id === 'emailReminderModalOverlay') closeEmailReminderModal();
