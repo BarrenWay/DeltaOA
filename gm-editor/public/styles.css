@@ -851,20 +851,11 @@ body > * {
   box-shadow: 0 0 6px currentColor;
 }
 
-.score-field.机构头衔 select {
-  min-width: 120px;
+.score-field.机构头衔 .agency-title-readonly {
+  display: inline-block;
   padding: 0.25rem 0.5rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: inherit;
   font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.score-field.机构头衔 select:focus {
-  outline: none;
-  border-color: var(--accent-red);
+  color: var(--text-primary);
 }
 
 .qa-editor {

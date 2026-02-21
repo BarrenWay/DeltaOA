@@ -3279,6 +3279,15 @@
       return 'tier-10';
     }
 
+    const AGENCY_TITLES = ['见习生', '专员', '高级专员', '助理总监', '总监', '地区总监', '副总裁', '高级副总裁', '执行副总裁', '主席'];
+    function getAgencyTitleFromCompetencyTrack(agent) {
+      const wallTracks = agent.wallTracks || {};
+      const 职能 = wallTracks.职能 || { marked: 0, struck: 0 };
+      const marked = Math.max(0, parseInt(职能.marked, 10) || 0);
+      const index = marked <= 1 ? 0 : Math.min(1 + Math.floor((marked - 2) / 3), AGENCY_TITLES.length - 1);
+      return AGENCY_TITLES[index];
+    }
+
     function buildWellKnownBoxes(value) {
       const n = Math.min(3, Math.max(0, parseInt(value, 10) || 0));
       let html = '';
@@ -3519,7 +3528,7 @@
                 <div>
                   <div class="agent-name">${escapeHtml(agent.name || '未命名特工')}</div>
                   ${agent.aka ? `<div class="agent-aka">${escapeHtml(agent.aka)}</div>` : ''}
-                  ${agent.机构头衔 ? `<div class="agent-title"><span class="label">机构头衔：</span>${escapeHtml(agent.机构头衔)}</div>` : ''}
+                  <div class="agent-title"><span class="label">机构头衔：</span>${escapeHtml(getAgencyTitleFromCompetencyTrack(agent))}</div>
                   <div class="agent-agency-rating"><span class="label">机构评级：</span><span class="rating-value ${getAgencyRatingTier(agent.申诫 ?? 0)}">${getAgencyRating(agent.申诫 ?? 0)}</span></div>
                 </div>
                 ${scoresHtml}

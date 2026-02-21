@@ -4,6 +4,15 @@ const API_BASE = (window.location.port === '3001' ? '' : 'http://localhost:3001'
 
 const AGENCY_TITLES = ['见习生', '专员', '高级专员', '助理总监', '总监', '地区总监', '副总裁', '高级副总裁', '执行副总裁', '主席'];
 
+/** 机构头衔 from 职能 track: 0–1 → 见习生 (first 2), then 2–4 → 专员, 5–7 → 高级专员, every 3 blocks → next title. */
+function getAgencyTitleFromCompetencyTrack(agent) {
+  const wallTracks = agent.wallTracks || {};
+  const 职能 = wallTracks.职能 || { marked: 0, struck: 0 };
+  const marked = Math.max(0, parseInt(职能.marked, 10) || 0);
+  const index = marked <= 1 ? 0 : Math.min(1 + Math.floor((marked - 2) / 3), AGENCY_TITLES.length - 1);
+  return AGENCY_TITLES[index];
+}
+
 /** 机构限制：散逸端阈值 → { 起始混沌, 天气事件, 分部限制 } */
 const AGENCY_LIMITS_TABLE = [
   { threshold: 11, 起始混沌: 5, 天气事件: 1, 分部限制: '在看似正常的对话中，特工们的人际关系会自发地提醒他们机构的职责以及减少散逸端的重要性。' },
@@ -215,10 +224,7 @@ function buildAgentCard(index) {
           <div class="edit-scores">
         <div class="score-field 机构头衔">
           <label>机构头衔</label>
-          <select data-agent="${index}" data-field="机构头衔">
-            <option value="">—</option>
-            ${AGENCY_TITLES.map(t => `<option value="${escapeHtml(t)}" ${(agent.机构头衔 || '') === t ? 'selected' : ''}>${escapeHtml(t)}</option>`).join('')}
-          </select>
+          <span class="agency-title-readonly" title="根据职能轨道标记自动计算">${escapeHtml(getAgencyTitleFromCompetencyTrack(agent))}</span>
         </div>
         <div class="score-field 嘉奖"><span class="score-icon">★</span><label>嘉奖</label><input type="number" data-agent="${index}" data-score="嘉奖" min="0" value="${agent.嘉奖 ?? 0}" /></div>
         <div class="score-field 申诫"><span class="score-icon">✗</span><label>申诫</label><input type="number" data-agent="${index}" data-score="申诫" min="0" value="${agent.申诫 ?? 0}" /></div>
@@ -1127,8 +1133,7 @@ function collectFormData() {
     agent.flag = card.querySelector(`input[data-field="flag"]`)?.checked || false;
     agent.socks = card.querySelector(`input[data-field="socks"]`)?.checked || false;
 
-    const titleSelect = card.querySelector(`select[data-field="机构头衔"]`);
-    agent.机构头衔 = titleSelect?.value?.trim() || undefined;
+    agent.机构头衔 = getAgencyTitleFromCompetencyTrack(agent);
 
     agent.arc = agent.arc || {};
     agent.arc.异常 = agent.arc.异常 || {};
