@@ -90,8 +90,8 @@
               "description": "刚进公司的贵人",
               "benefit": "德高望重",
               "benefitDescription": "每次任务中，你有一次机会可以就任何社交情境向此人寻求建议。他们会清晰地列出各种可能性或最佳选项，而且他们总是对的。向他们透露过多信息仍可能制造散逸端。",
-              "benefitActive": true,
-              "closeness": 3
+              "benefitActive": false,
+              "closeness": 4
             },
             {
               "name": "斯派克",
@@ -229,7 +229,7 @@
               "description": "互有好感。 城市空间设计的顾问。",
               "benefit": "博学",
               "benefitDescription": "如果你需要了解一段历史信息或某件机械的运作原理，你可以在任务期间给此人打一次电话，他们总能可靠地给出答案。向他们透露过多信息仍可能制造散逸端。",
-              "benefitActive": true,
+              "benefitActive": false,
               "closeness": 7
             },
             {
