@@ -609,6 +609,60 @@
       text-shadow: 0 0 8px rgba(46, 77, 146, 0.5);
     }
 
+    .siphon-modal {
+      position: relative;
+      overflow: visible;
+    }
+
+    .siphon-floating-pic {
+      display: none;
+      position: absolute;
+      right: -100px;
+      bottom: 0;
+      left: auto;
+      top: auto;
+      width: 140px;
+      height: 70%;
+      max-height: 280px;
+      z-index: 0;
+      pointer-events: none;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .siphon-floating-pic.visible {
+      display: flex;
+    }
+
+    .siphon-floating-pic img {
+      width: auto;
+      height: 100%;
+      max-width: 180px;
+      object-fit: contain;
+      object-position: right bottom;
+    }
+
+    .siphon-modal .siphon-modal-header,
+    .siphon-modal .modal-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .siphon-modal .siphon-floating-pic.visible ~ .siphon-modal-header,
+    .siphon-modal .siphon-floating-pic.visible ~ .modal-body {
+      padding-right: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .siphon-floating-pic.visible {
+        display: none !important;
+      }
+      .siphon-modal .siphon-floating-pic.visible ~ .siphon-modal-header,
+      .siphon-modal .siphon-floating-pic.visible ~ .modal-body {
+        padding-right: 0;
+      }
+    }
+
     .siphon-modal .siphon-store-title-altered {
       display: inline-block;
       position: relative;
@@ -3252,7 +3306,10 @@
 
   <div class="modal-overlay" id="siphonModalOverlay">
     <div class="modal siphon-modal" id="siphonModal">
-      <div class="modal-header">
+      <div class="siphon-floating-pic" id="siphonFloatingPic" aria-hidden="true">
+        <img src="assets/siphon.png" alt="">
+      </div>
+      <div class="modal-header siphon-modal-header">
         <h3 class="modal-title siphon-modal-title" id="siphonModalTitle">正在尝试非法连接...</h3>
         <button class="modal-close" type="button" aria-label="关闭">×</button>
       </div>
@@ -3963,6 +4020,7 @@
       document.getElementById('siphonErrorMsg').style.display = 'none';
       document.getElementById('siphonStoreContent').style.display = 'none';
       document.getElementById('siphonStoreContent').innerHTML = '';
+      document.getElementById('siphonFloatingPic').classList.remove('visible');
     }
 
     function closeSiphonModal() {
@@ -4089,6 +4147,7 @@
             </details>
           `;
           }).join('');
+          document.getElementById('siphonFloatingPic').classList.add('visible');
         })
         .catch(() => {
           contentEl.innerHTML = '<div class="items-list-loading">加载失败</div>';
