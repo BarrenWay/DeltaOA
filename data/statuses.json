@@ -566,10 +566,10 @@
               "name": "陈林",
               "actor": "劳伦斯",
               "description": "学生，12岁男孩",
-              "benefit": "",
-              "benefitDescription": "",
-              "benefitActive": false,
-              "closeness": 3
+              "benefit": "睿智",
+              "benefitDescription": "这个人总是能抢先几步。在您的下一次任务中，您可以在任何时候打电话给他们，从而在危险或潜在悲剧发生前得到警告。",
+              "benefitActive": true,
+              "closeness": 4
             }
           ],
           "现实触发器": {
@@ -599,7 +599,7 @@
         "共情": 0,
         "气场": 3,
         "欺瞒": 0,
-        "主动": 0,
+        "主动": 2,
         "专业": 3,
         "活力": 0,
         "坚毅": 3,
@@ -619,19 +619,19 @@
       ],
       "wallTracks": {
         "异常": {
-          "marked": 0,
-          "struck": 0
+          "marked": 1,
+          "struck": 2
         },
         "现实": {
           "marked": 0,
-          "struck": 0
+          "struck": 3
         },
         "职能": {
-          "marked": 0,
-          "struck": 0
+          "marked": 2,
+          "struck": 1
         }
       },
-      "机构头衔": "见习生"
+      "机构头衔": "专员"
     },
     {
       "id": "agent-6",
